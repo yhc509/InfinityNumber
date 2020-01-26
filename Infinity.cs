@@ -112,23 +112,11 @@ public struct Infinity
     
     public static Infinity operator -(Infinity inf1, Infinity inf2)
     {
-        Infinity big, small;
-        if (inf1 > inf2)
-        {
-            big = inf1;
-            small = inf2;
-        }
-        else
-        {
-            big = inf2;
-            small = inf1;
-        }
-
-        var subIndex = big.Index - small.Index;
+        Infinity result = inf1;
+        var subIndex = result.Index - inf2.Index;
         var t = Math.Pow(1000.0, subIndex);
-        big.Number -= small.Number / t;
-        
-        return big;
+        result.Number -= inf2.Number / t;
+        return result;
     }
     
     public static Infinity operator *(Infinity inf1, int n)
@@ -250,12 +238,12 @@ public struct Infinity
 
     private void RecaculateIndex()
     {
-        if (Number >= 1000.0)
+        if (Math.Abs(Number) >= 1000.0)
         {
             Number /= 1000.0;
             Index++;
         }
-        else if (Number < 1)
+        else if (Math.Abs(Number) < 1)
         {
             Number *= 1000.0;
             Index--;

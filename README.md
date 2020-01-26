@@ -1,4 +1,4 @@
-# InfinityNumber
+# Infinity
 거의 무한에 근접하는 수를 표현하는 구조체입니다.
 
 
@@ -38,16 +38,42 @@ var n = new Infinity(10.0, 0);
 
 ### 지원되는 사칙 연산
 #### 더하기(+)
+```csharp
+Infinity n = 10;    // 10.0A
+Infinity n2 = 100;  // 100.0A
+
+n += 1;             // 11.0A
+n += (long) 1;      // 12.0A
+n += n2;            // 112.0A
+```
 - Infinity + int
 - Infinity + long
 - Infinity + Infinity
 
 #### 빼기(-)
+```csharp
+Infinity n = 10;    // 10.0A
+Infinity n2 = 100;  // 100.0A
+
+n -= 10;            // 0.0A
+n -= (long) 1;      // -1.0A
+n -= n2;            // -101.0A
+```
 - Infinity - int
 - Infinity - long
 - Infinity - Infinity
 
 #### 곱하기(*)
+```csharp
+Infinity n = 10;    // 10.0A
+Infinity n2 = 100;  // 100.0A
+
+n *= 10;            // 100.0A
+n *= (long) 10;     // 1.0B
+n *= 2.5f;          // 2.5B
+n *= 2.0;           // 5.0B
+n *= n2;            // 500.0B
+```
 - Infinity * int
 - Infinity * long
 - Infinity * float
@@ -55,6 +81,16 @@ var n = new Infinity(10.0, 0);
 - Infinity * Infinity
 
 #### 나누기(/)
+```csharp
+Infinity n = 1000;    // 10.0A
+Infinity n2 = 10;  // 100.0A
+
+n /= 10;            // 100.0A
+n /= (long) 10;     // 10.0A
+n /= 0.5f;          // 20.0A
+n /= 0.5;           // 40.0A
+n /= n2;            // 4.0A
+```
 - Infinity / int
 - Infinity / long
 - Infinity / float

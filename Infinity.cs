@@ -25,9 +25,13 @@ public struct Infinity
     public double Number { get; private set; }
 
     #region Constucor
-    public Infinity(int input) : this((long) input) { }
+    public Infinity(int input) : this((double) input) { }
     
-    public Infinity(long input)
+    public Infinity(long input) : this((double) input){ }
+    
+    public Infinity(float input) : this((double) input) { }
+    
+    public Infinity(double input)
     {
         this = default(Infinity);
         Index = GetIndex(input);
@@ -69,6 +73,10 @@ public struct Infinity
 
     public override string ToString()
     {
+        if (TypeIndex >= TypeArr.Length)
+        {
+            throw new IndexOutOfRangeException();
+        }
         return string.Format("{0:F1}{1}", Number, TypeArr[TypeIndex]);
     }
 
@@ -79,6 +87,14 @@ public struct Infinity
     }
     
     public static implicit operator Infinity(long input) {
+        return new Infinity(input);
+    }
+    
+    public static implicit operator Infinity(float input) {
+        return new Infinity(input);
+    }
+    
+    public static implicit operator Infinity(double input) {
         return new Infinity(input);
     }
     
@@ -99,6 +115,16 @@ public struct Infinity
         return (inf1 + new Infinity(n));
     }
     
+    public static Infinity operator +(Infinity inf1, float n)
+    {
+        return (inf1 + new Infinity(n));
+    }
+    
+    public static Infinity operator +(Infinity inf1, double n)
+    {
+        return (inf1 + new Infinity(n));
+    }
+    
     public static Infinity operator +(Infinity inf1, Infinity inf2)
     {
         Infinity result = inf1;
@@ -110,6 +136,26 @@ public struct Infinity
     }
     
     
+    public static Infinity operator -(Infinity inf1, int n)
+    {
+        return (inf1 - new Infinity(n));
+    }
+        
+    public static Infinity operator -(Infinity inf1, long n)
+    {
+        return (inf1 - new Infinity(n));
+    }
+    
+    public static Infinity operator -(Infinity inf1, float n)
+    {
+        return (inf1 - new Infinity(n));
+    }
+    
+    public static Infinity operator -(Infinity inf1, double n)
+    {
+        return (inf1 - new Infinity(n));
+    }
+
     public static Infinity operator -(Infinity inf1, Infinity inf2)
     {
         Infinity result = inf1;
@@ -250,9 +296,9 @@ public struct Infinity
         }
     }
 
-    private int GetIndex(long input)
+    private int GetIndex(double input)
     {
-        long temp = input;
+        double temp = input;
         int index = 0;
         for (index = 0; temp >= 1000; index++)
         {

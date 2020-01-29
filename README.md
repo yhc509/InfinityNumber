@@ -43,11 +43,12 @@ Infinity n = 10;    // 10.0A
 Infinity n2 = 100;  // 100.0A
 
 n += 1;             // 11.0A
-n += (long) 1;      // 12.0A
-n += n2;            // 112.0A
+n += n2;            // 111.0A
 ```
 - Infinity + int
 - Infinity + long
+- Infinity + float
+- Infinity + double
 - Infinity + Infinity
 
 #### 빼기(-)
@@ -56,11 +57,12 @@ Infinity n = 10;    // 10.0A
 Infinity n2 = 100;  // 100.0A
 
 n -= 10;            // 0.0A
-n -= (long) 1;      // -1.0A
-n -= n2;            // -101.0A
+n -= n2;            // -100.0A
 ```
 - Infinity - int
 - Infinity - long
+- Infinity - float
+- Infinity - double
 - Infinity - Infinity
 
 #### 곱하기(*)
